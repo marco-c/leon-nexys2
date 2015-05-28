@@ -1,0 +1,95 @@
+CONFIG stepping="0";
+
+NET clk period = 20.000 ;
+OFFSET = out : 20.000 : AFTER clk ;
+OFFSET = in : 8.000 : BEFORE clk ;
+
+NET video_clk period = 25.000 ;
+#OFFSET = out : 25.000 : AFTER video_clk;
+
+NET "clkm" 		TNM_NET = "clkm";
+NET "video_clk" 	TNM_NET = "video_clk";
+TIMESPEC "TS_clkm_vidclk" = FROM "clkm" TO "video_clk" TIG;
+TIMESPEC "TS_vidclk_clkm" = FROM "video_clk" TO "clkm" TIG;
+
+NET "clk"   LOC = "B8"; # Bank = 0, Pin name = IP_L13P_0/GCLK8, Type = GCLK, Sch name = GCLK0
+
+# onBoard Cellular RAM and StrataFlash
+NET "oen"     LOC = "T2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L24P_3, Type = I/O, Sch name = OE
+NET "writen"     LOC = "N7" | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IO_L07P_2, Type = I/O, Sch name = WE
+NET "Ramsn"     LOC = "R6" | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IO_L05P_2, Type = I/O, Sch name = MT-CE
+NET "RamAdv"    LOC = "J4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L11N_3/LHCLK1, Type = LHCLK, Sch name = MT-ADV
+NET "RamClk"    LOC = "H5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L08N_3, Type = I/O, Sch name = MT-CLK
+NET "RamCRE"    LOC = "P7" | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IO_L07N_2, Type = I/O, Sch name = MT-CRE
+NET "Mben<1>"     LOC = "K5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L14N_3/LHCLK7, Type = LHCLK, Sch name = MT-LB
+NET "Mben<0>"     LOC = "K4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L13N_3/LHCLK5, Type = LHCLK, Sch name = MT-UB
+
+NET "address<1>"  LOC = "J1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L12P_3/LHCLK2, Type = LHCLK, Sch name = ADR1
+NET "address<2>"  LOC = "J2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L12N_3/LHCLK3/IRDY2, Type = LHCLK, Sch name = ADR2
+NET "address<3>"  LOC = "H4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L09P_3, Type = I/O, Sch name = ADR3
+NET "address<4>"  LOC = "H1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L10N_3, Type = I/O, Sch name = ADR4
+NET "address<5>"  LOC = "H2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L10P_3, Type = I/O, Sch name = ADR5
+NET "address<6>"  LOC = "J5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L11P_3/LHCLK0, Type = LHCLK, Sch name = ADR6
+NET "address<7>"  LOC = "H3" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L09N_3, Type = I/O, Sch name = ADR7
+NET "address<8>"  LOC = "H6" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L08P_3, Type = I/O, Sch name = ADR8
+NET "address<9>"  LOC = "F1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L05P_3, Type = I/O, Sch name = ADR9
+NET "address<10>" LOC = "G3" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L06P_3, Type = I/O, Sch name = ADR10
+NET "address<11>" LOC = "G6" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L07P_3, Type = I/O, Sch name = ADR11
+NET "address<12>" LOC = "G5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L07N_3, Type = I/O, Sch name = ADR12
+NET "address<13>" LOC = "G4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L06N_3/VREF_3, Type = VREF, Sch name = ADR13
+NET "address<14>" LOC = "F2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L05N_3, Type = I/O, Sch name = ADR14
+NET "address<15>" LOC = "E1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L03N_3, Type = I/O, Sch name = ADR15
+NET "address<16>" LOC = "M5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L19P_3, Type = I/O, Sch name = ADR16
+NET "address<17>" LOC = "E2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L03P_3, Type = I/O, Sch name = ADR17
+NET "address<18>" LOC = "C2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L01N_3, Type = I/O, Sch name = ADR18
+NET "address<19>" LOC = "C1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L01P_3, Type = I/O, Sch name = ADR19
+NET "address<20>" LOC = "D2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L02N_3/VREF_3, Type = VREF, Sch name = ADR20
+NET "address<21>" LOC = "K3" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L13P_3/LHCLK4/TRDY2, Type = LHCLK, Sch name = ADR21
+NET "address<22>" LOC = "D1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L02P_3, Type = I/O, Sch name = ADR22
+NET "address<23>" LOC = "K6" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L14P_3/LHCLK6, Type = LHCLK, Sch name = ADR23
+NET "data<16>"  LOC = "L1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L15P_3, Type = I/O, Sch name = DB0
+NET "data<17>"  LOC = "L4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L16N_3, Type = I/O, Sch name = DB1
+NET "data<18>"  LOC = "L6" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L17P_3, Type = I/O, Sch name = DB2
+NET "data<19>"  LOC = "M4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L18P_3, Type = I/O, Sch name = DB3
+NET "data<20>"  LOC = "N5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L20N_3, Type = I/O, Sch name = DB4
+NET "data<21>"  LOC = "P1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L21N_3, Type = I/O, Sch name = DB5
+NET "data<22>"  LOC = "P2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L21P_3, Type = I/O, Sch name = DB6
+NET "data<23>"  LOC = "R2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L23N_3, Type = I/O, Sch name = DB7
+NET "data<24>"  LOC = "L3" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L16P_3, Type = I/O, Sch name = DB8
+NET "data<25>"  LOC = "L5" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L17N_3/VREF_3, Type = VREF, Sch name = DB9
+NET "data<26>" LOC = "M3" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L18N_3, Type = I/O, Sch name = DB10
+NET "data<27>" LOC = "M6" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L19N_3, Type = I/O, Sch name = DB11
+NET "data<28>" LOC = "L2" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L15N_3, Type = I/O, Sch name = DB12
+NET "data<29>" LOC = "N4" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L20P_3, Type = I/O, Sch name = DB13
+NET "data<30>" LOC = "R3" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L23P_3, Type = I/O, Sch name = DB14
+NET "data<31>" LOC = "T1" | IOSTANDARD = LVTTL; # Bank = 3, Pin name = IO_L24N_3, Type = I/O, Sch name = DB15
+NET "dsubre" LOC = "E18"  | IOSTANDARD = LVTTL ;#button(2)
+NET "dsuact" LOC = "J15"  | IOSTANDARD = LVTTL ;#led(1)
+NET "error"  LOC = "J14" | IOSTANDARD = LVTTL; # Bank = 1, Pin name = IO_L14N_1/A3/RHCLK7, Type = RHCLK/DUAL, Sch name = JD10/LD0
+NET "reset" LOC = "G18" | IOSTANDARD = LVTTL; # Bank = 1, Pin name = IP, Type = INPUT, Sch name = SW0
+NET "rxd1" LOC = "U6" | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IP, Type = INPUT, Sch name = RS-RX
+NET "txd1" LOC = "P9" | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IO, Type = I/O, Sch name = RS-TX
+NET "vid_b" LOC = "U4" | IOSTANDARD = LVTTL;
+NET "vid_g" LOC = "P6" | IOSTANDARD = LVTTL;
+NET "vid_hsync" LOC = "T4" | IOSTANDARD = LVTTL;
+NET "vid_r" LOC = "R8" | IOSTANDARD = LVTTL;
+NET "vid_vsync" LOC = "U3" | IOSTANDARD = LVTTL;
+NET "txd2" LOC = "R15" | IOSTANDARD = LVTTL; #JB3
+NET "rxd2" LOC = "T17" | IOSTANDARD = LVTTL; #JB4
+
+
+NET "pio(0)" LOC = "F17" | IOSTANDARD = LVTTL; #AN0
+NET "pio(1)" LOC = "H17" | IOSTANDARD = LVTTL; #AN1
+NET "pio(2)" LOC = "C18" | IOSTANDARD = LVTTL; #AN2
+NET "pio(3)" LOC = "F15" | IOSTANDARD = LVTTL; #AN3
+
+NET "pio(8)" LOC = "L18" | IOSTANDARD = LVTTL; # DISP A
+NET "pio(9)" LOC = "F18" | IOSTANDARD = LVTTL; # DISP B
+NET "pio(10)" LOC = "D17" | IOSTANDARD = LVTTL; # DISP C
+NET "pio(11)" LOC = "D16" | IOSTANDARD = LVTTL; # DISP D
+NET "pio(12)" LOC = "G14" | IOSTANDARD = LVTTL; # DISP E
+NET "pio(13)" LOC = "J17" | IOSTANDARD = LVTTL; # DISP F
+NET "pio(14)" LOC = "H14" | IOSTANDARD = LVTTL; # DISP G
+NET "ps2clk" LOC = "R12"  | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IO_L20N_2, Type = I/O, Sch name = PS2C
+NET "ps2data" LOC = "P11" | IOSTANDARD = LVTTL; # Bank = 2, Pin name = IO_L18P_2, Type = I/O, Sch name = PS2D
+
